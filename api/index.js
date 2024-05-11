@@ -27,11 +27,11 @@ app.use('/api/auth', authRoutes);
 
 // Common error middleware
 app.use((err, req, res, next)=> {
-    const statuscode = err.statuscode || 500;
+    const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error';
-    res.status(statuscode).json({
+    res.status(statusCode).json({
         success: false,
-        statuscode,
+        statusCode,
         message
     });
 });
