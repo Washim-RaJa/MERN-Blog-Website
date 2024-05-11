@@ -94,15 +94,9 @@ export default function Signup() {
                 onChange={handleChange}
               />
             </div>
-            <Button gradientDuoTone='purpleToPink' type="submit">
-              Sign up
-            </Button>
-          </form>
-          <div className="flex gap-2 text-sm mt-5">
-            <span>Have an account?</span>
-            <Link
-              to='/signin'
-              className="text-blue-500"
+            <Button
+              gradientDuoTone='purpleToPink'
+              type="submit"
               disabled={loading}
             >
               {loading ? (
@@ -111,8 +105,17 @@ export default function Signup() {
                   <span className="pl-3">Loading...</span>
                 </>
               ) : (
-                'Sign in'
+                'Sign Up'
               )}
+            </Button>
+          </form>
+          <div className="flex gap-2 text-sm mt-5">
+            <span>Have an account?</span>
+            <Link
+              to='/signin'
+              className="text-blue-500"
+            >
+            Sign In
             </Link>
           </div>
           {errorMessage && (
