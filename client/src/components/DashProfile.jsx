@@ -52,7 +52,7 @@ export default function DashProfile() {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100 // upload progress in %
         setImageFileUploadProgress(progress.toFixed(0))   // toFixed(0) - rounds off the decimal
       },
-      (error) => {
+      () => {   // Error Handling
         setImageFileUploadError('Could not upload image (File must be less than 2MB) ');
         setImageFileUploadProgress(null);
         setImageFile(null)
@@ -107,7 +107,7 @@ export default function DashProfile() {
             src= {imageFileUrl || currentUser.profilePicture}
             alt="user"
             className={
-              `w-full h-full rounded-full border-8 border-[lightgray] object-cover
+              `w-full h-full rounded-full border-8 border-[lightgray] object-cover text-center
               ${ imageFileUploadProgress && imageFileUploadProgress < 100 && 'opacity-60'}`
             }
           />
