@@ -42,7 +42,7 @@ export const signin = async (req, res, next) => {
             return next(errorHandler(400, 'Invalid Password'));
         }
         // excluding expiration time results token expiration when browser is closed i.e. one time session.
-        const token = jwt.sign({ id: validUser._id},process.env.JWT_SECRET_KEY);
+        const token = jwt.sign({ id: validUser._id, isAdmin: validUser.isAdmin },process.env.JWT_SECRET_KEY);
 
         // Excluding the password from response
         const { password: pwd, ...rest } = validUser._doc
@@ -65,7 +65,7 @@ export const google = async (req, res, next) => {
 
         // Signin/login Logic
         if (user) {
-            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY);
+            const token = jwt.sign({id: user._id, isAdmin: user.isAdmin }, process.env.JWT_SECRET_KEY);
             // excluding the password from response
             const { password, ...rest } = user._doc;
             res.status(200)
@@ -89,7 +89,7 @@ export const google = async (req, res, next) => {
 
         await newUser.save();
 
-        const token = jwt.sign( { id: newUser._id }, process.env.JWT_SECRET_KEY);
+        const token = jwt.sign( { id: newUser._id, isAdmin: newUser.isAdmin }, process.env.JWT_SECRET_KEY);
 
         const { password, ...rest } = newUser._doc;
         
